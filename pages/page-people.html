@@ -6,14 +6,12 @@
     <title>人·人文之脉 - 崖城风骨</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/officials-timeline.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 页面进度条 -->
     <div class="page-progress"></div>
-
-    <!-- 弹窗 -->
     <div class="modal">
         <div class="modal-content">
             <button class="modal-close">&times;</button>
@@ -21,7 +19,6 @@
         </div>
     </div>
 
-    <!-- 全局导航 -->
     <nav class="navbar scrolled">
         <div class="nav-brand">
             <span class="nav-logo">崖城风骨</span>
@@ -41,7 +38,6 @@
         </button>
     </nav>
 
-    <!-- 全局控件 -->
     <div class="global-controls">
         <button id="assistant-toggle" class="control-btn" title="智能助手">
             <span>🤖</span>
@@ -65,7 +61,6 @@
         </button>
     </div>
     
-    <!-- AI智能助手 -->
     <div class="assistant-float" id="assistant-float">
         <div class="assistant-header" id="assistant-header">
             <div class="assistant-title">
@@ -140,91 +135,238 @@
         </div>
     </section>
 
-    <section class="content-section">
+    <section class="officials-timeline-section" id="officials-timeline">
         <div class="container">
             <div class="section-header scroll-reveal">
                 <span class="section-tag">贬官文化</span>
-                <h2 class="section-title">贬官与建筑</h2>
-                <p class="section-subtitle">中原文化的南疆传播者</p>
+                <h2 class="section-title">崖州八大丞相</h2>
+                <p class="section-subtitle">中原文化的南疆传播者 · 点击探索历史人物</p>
             </div>
             
-            <div class="officials-grid scroll-reveal">
-                <div class="official-card" data-official="lideyu">
-                    <div class="official-image">
-                        <img src="../images/content/gate-south.jpg" alt="李德裕">
-                    </div>
-                    <div class="official-info">
-                        <h4>李德裕</h4>
-                        <span class="official-title">唐代宰相</span>
-                        <p>大中二年(848年)贬至崖州，积极著书立说，传播中原文化。</p>
-                        <blockquote>"独上高楼望帝京，鸟飞犹是半年程"</blockquote>
+            <div class="timeline-wrapper-vertical scroll-reveal">
+                <!-- 左侧时间轴导航 -->
+                <div class="timeline-sidebar">
+                    <div class="timeline-progress-vertical" id="timeline-progress-vertical"></div>
+                    <div class="timeline-items-vertical">
+                        <div class="timeline-item-vertical active" data-official="hanyuan">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">唐高宗时期</span>
+                                <span class="timeline-name-vertical">韩瑗</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="cuiyuanzong">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">武则天时期</span>
+                                <span class="timeline-name-vertical">崔元综</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="yangyan">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">唐德宗时期</span>
+                                <span class="timeline-name-vertical">杨炎</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="weizhiyi">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">唐顺宗时期</span>
+                                <span class="timeline-name-vertical">韦执谊</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="luduoxun">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">北宋开国</span>
+                                <span class="timeline-name-vertical">卢多逊</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="dingwei">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">北宋三朝</span>
+                                <span class="timeline-name-vertical">丁谓</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="zhaoding">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">南宋高宗</span>
+                                <span class="timeline-name-vertical">赵鼎</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item-vertical" data-official="wangshixi">
+                            <div class="timeline-dot-vertical"></div>
+                            <div class="timeline-info-vertical">
+                                <span class="timeline-era-vertical">元朝</span>
+                                <span class="timeline-name-vertical">王仕熙</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="official-card" data-official="huquan">
-                    <div class="official-image">
-                        <img src="../images/content/gate-east.jpg" alt="胡铨">
+                
+                <!-- 右侧人物详情展示 -->
+                <div class="officials-display" id="officials-display">
+                    <div class="display-content">
+                        <div class="display-portrait">
+                            <img src="../images/humanity/chengxiang/hanyuan.png" alt="韩瑗" id="display-portrait">
+                            <div class="portrait-frame"></div>
+                        </div>
+                        
+                        <div class="display-info">
+                            <div class="display-header">
+                                <span class="display-era" id="display-era">唐高宗时期</span>
+                                <h3 class="display-name" id="display-name">韩瑗</h3>
+                                <p class="display-title" id="display-title">唐高宗时期的宰相</p>
+                                <p class="display-period" id="display-period">606-659</p>
+                            </div>
+                            
+                            <div class="display-body">
+                                <div class="display-section">
+                                    <h4><span class="section-icon">📜</span>人物背景</h4>
+                                    <p id="display-background">韩瑗出身贵族名门，学识渊博、才华横溢。唐永徽四年(653)，韩瑗官拜同中书门三品，后晋升为侍中并兼任太子宾客。当时，唐高宗打算废黜王皇后，改立武昭仪(武则天)，这一举措遭到长孙无忌、褚遂良等佐命大臣的极力反对。韩瑗进谏劝阻，还为被贬的褚遂良进行辩护，此举激怒了唐高宗和武则天。显庆二年(657)，韩瑗被罢相，并贬为振州刺史，在治所崖城居住，他也是被贬至琼州的首位宰相。</p>
+                                </div>
+                                
+                                <!-- 成就配图展示区 -->
+                                <div class="display-section achievement-image-section" id="achievement-section" style="display: none;">
+                                    <h4><span class="section-icon">🖼️</span>成就遗迹</h4>
+                                    <div class="achievement-image-wrapper">
+                                        <img id="achievement-image" src="" alt="成就配图">
+                                        <div class="achievement-caption" id="achievement-caption"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="display-section">
+                                    <h4><span class="section-icon">✨</span>人物贡献</h4>
+                                    <div class="contributions-grid" id="display-contributions"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="official-info">
-                        <h4>胡铨</h4>
-                        <span class="official-title">宋代名臣</span>
-                        <p>绍兴十四年(1144年)贬至崖州，兴办书院，开启文教先河。</p>
-                        <blockquote>"日以训经传书为事"</blockquote>
+                    
+                    <!-- 导航按钮 -->
+                    <div class="display-nav">
+                        <button class="nav-btn prev" id="prev-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            <span>上一位</span>
+                        </button>
+                        <div class="nav-indicator">
+                            <span id="current-index">1</span>
+                            <span class="separator">/</span>
+                            <span id="total-count">8</span>
+                        </div>
+                        <button class="nav-btn next" id="next-btn">
+                            <span>下一位</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
                     </div>
-                </div>
-            </div>
-            
-            <div class="culture-heritage scroll-reveal">
-                <div class="heritage-item">
-                    <span class="heritage-icon">📚</span>
-                    <span class="heritage-name">崖州学宫</span>
-                    <span class="heritage-desc">贬官推动的礼制建筑</span>
-                </div>
-                <div class="heritage-item">
-                    <span class="heritage-icon">🏛️</span>
-                    <span class="heritage-name">盛德堂</span>
-                    <span class="heritage-desc">赵鼎、胡铨谪居地</span>
-                </div>
-                <div class="heritage-item">
-                    <span class="heritage-icon">🎨</span>
-                    <span class="heritage-name">崖州八景</span>
-                    <span class="heritage-desc">王仕熙品题山水</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="content-section bg-light">
+    <section class="history-figures-section bg-light" id="history-figures">
         <div class="container">
             <div class="section-header scroll-reveal">
-                <span class="section-tag">民居文化</span>
-                <h2 class="section-title">民居与家族</h2>
-                <p class="section-subtitle">建筑作为家族文化的物质载体</p>
+                <span class="section-tag">历史名人</span>
+                <h2 class="section-title">四大历史人物</h2>
+                <p class="section-subtitle">推动崖州文明发展的重要人物</p>
             </div>
             
-            <div class="house-display scroll-reveal">
-                <div class="house-image">
-                    <img src="../images/content/oyster-window.jpg" alt="保平村民居">
+            <div class="history-figures-grid scroll-reveal">
+                <div class="history-figure-card" data-figure="huangdaopo">
+                    <div class="figure-image">
+                        <img src="../images/humanity/history/huangdaopo.png" alt="黄道婆">
+                    </div>
+                    <div class="figure-content">
+                        <h3 class="figure-name">黄道婆</h3>
+                        <p class="figure-title">棉纺织技术革新家</p>
+                        <p class="figure-desc">宋末元初松江府乌泥泾(今上海徐汇区东湾村)人，我国古代杰出的棉纺织技术革新家。约1261年流落崖州，在崖州生活三十余年，从黎族人民那里学到了一整套棉纺织加工技术。约1295年返回故乡，致力于改革当地落后的棉纺织工具。</p>
+                        <div class="figure-details">
+                            <div class="detail-item">
+                                <span class="detail-label">主要贡献</span>
+                                <p>创制去籽搅车、弹棉椎弓、三锭脚踏纺纱车等，大幅提升纺纱效率</p>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">历史影响</span>
+                                <p>总结出"错纱、配色、综线、累花"等织造技术，推动淞江发展为全国棉织业中心，被誉为"衣被半天下"</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="house-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">🏠</div>
-                        <div class="feature-content">
-                            <h4>三合院/四合院</h4>
-                            <p>严格遵循中轴线对称，反映儒家宗法伦理与等级秩序</p>
+                
+                <div class="history-figure-card" data-figure="xianfuren">
+                    <div class="figure-image">
+                        <img src="../images/humanity/history/xianfuren.png" alt="冼夫人">
+                    </div>
+                    <div class="figure-content">
+                        <h3 class="figure-name">冼夫人</h3>
+                        <p class="figure-title">第一巾帼英雄 · 谯国夫人</p>
+                        <p class="figure-desc">约522-602年，相传名为冼英，生于高凉郡(今广东省茂名市电白区电城镇山兜村)冼氏家族。是中国南北朝至隋朝初年重要的政治、军事人物，也是岭南(今广东、广西、海南)地区的俚人领袖。</p>
+                        <div class="figure-details">
+                            <div class="detail-item">
+                                <span class="detail-label">政治成就</span>
+                                <p>自幼贤明，多谋略，年少时便世袭大首领，因威望显著，南海沿海地区和海南岛共千余部落皆归附其统领</p>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">历史地位</span>
+                                <p>维护国家统一，促进民族团结，被尊为"岭南圣母"，是海南历史上最重要的女性政治家</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🏘️</div>
-                        <div class="feature-content">
-                            <h4>"屋檐接吻"</h4>
-                            <p>建筑屋檐紧密相接形成"一线天"，体现邻里紧密相依</p>
+                </div>
+                
+                <div class="history-figure-card" data-figure="zhongfang">
+                    <div class="figure-image">
+                        <img src="../images/humanity/history/zhongfang.png" alt="钟芳">
+                    </div>
+                    <div class="figure-content">
+                        <h3 class="figure-name">钟芳</h3>
+                        <p class="figure-title">岭海巨儒 · 钟崖州</p>
+                        <p class="figure-desc">1476-1544年，字仲实，号筠溪。原籍琼山县，出生于崖州高山所(今海南省三亚市崖州区水南村)。幼年丧母，寄居外亲黄家，又名黄芳。自幼聪颖好学，10岁入崖州州学。</p>
+                        <div class="figure-details">
+                            <div class="detail-item">
+                                <span class="detail-label">科举成就</span>
+                                <p>明弘治十四年乡试第二，正德三年殿试二甲第三，选翰林院庶吉士、授编修，时人誉"丘文庄后又一南溟奇才"</p>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">为官政绩</span>
+                                <p>为官27载，历任翰林院编修、宁国府推官、钦差总提督仓场户部右侍郎等职，政绩显著，官声远扬</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🎨</div>
-                        <div class="feature-content">
-                            <h4>海洋文化装饰</h4>
-                            <p>灰塑、木雕中大量出现鱼、船、海浪等海洋题材</p>
+                </div>
+                
+                <div class="history-figure-card" data-figure="wangyangming">
+                    <div class="figure-image">
+                        <img src="../images/humanity/history/wangyangming.png" alt="王阳明">
+                    </div>
+                    <div class="figure-content">
+                        <h3 class="figure-name">王阳明</h3>
+                        <p class="figure-title">心学巨擘 · 千古完人</p>
+                        <p class="figure-desc">名守仁，字伯安，明代杰出的思想家、文学家、军事家、教育家。年少立志成圣，历经坎坷，于龙场悟道，开创心学，提出"心即理""知行合一""致良知"等核心思想。</p>
+                        <div class="figure-details">
+                            <div class="detail-item">
+                                <span class="detail-label">思想贡献</span>
+                                <p>打破程朱理学桎梏，为儒家思想注入新活力，是明代心学集大成者</p>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">与崖州渊源</span>
+                                <p>虽未直接长居崖州，但在江西、广西等地平乱时与崖州籍名臣钟芳多有交集，二人思想碰撞，共同推动明代学术多元发展</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,6 +406,7 @@
     </footer>
 
     <script src="../js/global.js"></script>
+    <script src="../js/officials-timeline.js"></script>
     <script src="../js/people.js"></script>
 </body>
 </html>
