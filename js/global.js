@@ -159,7 +159,7 @@ const GlobalControls = {
 
     bindEvents() {
         if (this.audioBtn) {
-            this.audioBtn.addEventListener('click', () => this.toggleAudioPanel());
+            this.audioBtn.addEventListener('click', () => this.toggleAudio());
         }
 
         if (this.topBtn) {
@@ -168,7 +168,7 @@ const GlobalControls = {
             });
         }
 
-        // 播放/暂停按钮
+        // 播放/暂停按钮（面板内）
         if (this.playPauseBtn) {
             this.playPauseBtn.addEventListener('click', () => this.toggleAudio());
         }

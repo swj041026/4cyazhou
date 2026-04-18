@@ -39,7 +39,8 @@ function loadEnvFile() {
 
 loadEnvFile();
 
-const PORT = 8080;
+// 支持多端口配置：本地开发8080，部署环境6677
+const PORTS = [6677];
 
 const mimeTypes = {
     '.html': 'text/html',
@@ -237,30 +238,44 @@ function serveStaticFile(req, res, filePath) {
     });
 }
 
-const server = http.createServer((req, res) => {
-    const parsedUrl = url.parse(req.url, true);
-    const pathname = parsedUrl.pathname;
+// 创建服务器实例
+function createServerInstance(port) {
+    const server = http.createServer((req, res) => {
+        const parsedUrl = url.parse(req.url, true);
+        const pathname = parsedUrl.pathname;
 
-    // API路由
-    if (pathname.startsWith('/api/')) {
-        handleAPIRequest(req, res, pathname);
-        return;
-    }
+        // API路由
+        if (pathname.startsWith('/api/')) {
+            handleAPIRequest(req, res, pathname);
+            return;
+        }
 
-    // 静态文件路由
-    let filePath = '.' + pathname;
-    if (filePath === './') {
-        filePath = './index.html';
-    }
+        // 静态文件路由
+        let filePath = '.' + pathname;
+        if (filePath === './') {
+            filePath = './index.html';
+        }
 
-    serveStaticFile(req, res, filePath);
-});
+        serveStaticFile(req, res, filePath);
+    });
 
-server.listen(PORT, () => {
-    console.log('='.repeat(50));
-    console.log('  崖城风骨 - Deepseek AI 智能助手服务');
-    console.log('='.repeat(50));
-    console.log(`  服务器地址: http://localhost:${PORT}/`);
-    console.log(`  AI服务状态: ${DEEPSEEK_API_KEY ? '已配置 ✓' : '未配置 ✗'}`);
-    console.log('='.repeat(50));
-});
+    server.listen(port, '0.0.0.0', () => {
+        console.log(`  ✓ 端口 ${port} 已启动`);
+    });
+
+    return server;
+}
+
+// 启动所有端口
+console.log('='.repeat(50));
+console.log('  崖城风骨 - Deepseek AI 智能助手服务');
+console.log('='.repeat(50));
+
+PORTS.forEach(port => createServerInstance(port));
+
+console.log('='.repeat(50));
+console.log('  访问地址:');
+console.log(`    - http://localhost:6677/`);
+console.log(`    - http://sujianyu.cn:6677/`);
+console.log(`  AI服务状态: ${DEEPSEEK_API_KEY ? '已配置 ✓' : '未配置 ✗'}`);
+console.log('='.repeat(50));

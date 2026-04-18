@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  yazhou-guocai:
+    build: .
+    container_name: yazhou-guocai
+    ports:
+      - "6677:8080"
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - DEEPSEEK_BASE_URL=${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+    restart: unless-stopped
+    volumes:
+      # 可选：持久化日志
+      - ./logs:/app/logs

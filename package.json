@@ -1,0 +1,22 @@
+{
+  "name": "yazhou-guocai",
+  "version": "1.0.0",
+  "description": "崖城风骨 - 崖州古城建筑文化数字图鉴",
+  "main": "api-server.js",
+  "scripts": {
+    "start": "node api-server.js",
+    "dev": "node api-server.js",
+    "server": "node server.js"
+  },
+  "keywords": [
+    "崖州古城",
+    "数字图鉴",
+    "历史文化",
+    "海南"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

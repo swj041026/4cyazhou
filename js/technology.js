@@ -393,7 +393,7 @@ const MultiDimensionalTimeline = {
             { year: '南宋-明清', title: '广济桥', era: '故城周边', desc: '南宋绍定间建，跨护城河、石基砖拱，石灰灰浆勾缝，桥面石板铺砌，明清修缮、民国损毁，现存桥基及部分拱券。', features: ['自然水源', '简易渠道'], source: '1. 清光绪《崖州志》：广济桥，宋绍定间建，跨护城河，石基砖拱，石灰灰浆勾缝，桥面石板铺砌，通城外要道；2. 广济桥遗址考据报告：广济桥桥基为火山岩，拱券为青砖，灰浆含糯米成分，与故城城墙工艺一致。', image: '../images/technology/GuangJiQiao.jpg' },
             { year: '宋代', title: '后河', era: '人工河', desc: '后河南宋淳祐五年毛奎开凿，长八里，东三里引水、余用天然洼地，明清沿用、民国淤塞，2013 年清理遗址。', features: ['石拱结构', '交通枢纽'], source: '1. 南宋《吉阳军修城志》：淳祐五年，知军毛奎凿后河，绕城北，长八里，东三里引水，余用天然洼地，以利灌溉、防御；2. 明人裴崇礼跋文：后河开凿，引宁远河水，灌田护城，为崖州水利之要；3. 2013 年后河遗址考据报告：后河遗址主体清晰，东部引水段人工开凿痕迹明显。', image: '../images/technology/HouHe.jpg' },
             { year: '明清', title: '古城护城河', era: '城市水系', desc: '护城河明清建、环绕古城，周回三里许、深五米，清代疏浚、民国填埋，现存西段。', features: ['环形水系', '防洪排涝'], source: '清光绪《崖州志》：护城河环绕古城，周回三里许，深五米，兼具防御、排水、灌溉之能。', image: '../images/technology/GuoDaiHuChengHe.jpg' },
-            { year: '明清', title: '城内四渠', era: '农田灌溉', desc: '城内四渠明清建、疏导雨水，合古城四漏之局，清代修缮，部分被覆盖。', features: ['人工渠道', '农田灌溉'], source: '1. 清光绪《崖州志》：城内排水渠四，分导雨水、生活用水，合古城四漏之局。', image: '../images/technology/ChengNeiSiQv.png' },
+            { year: '明清', title: '城内四渠', era: '城市排水', desc: '城内四渠明清建、疏导雨水，合古城四隅之局，清代修缮，部分被覆盖。', features: ['人工渠道', '城市排水'], source: '1. 清光绪《崖州志》：城内排水渠四，分导雨水、生活用水，合古城四隅之局。', image: '../images/technology/ChengNeiSiQv.png' },
             { year: '清代', title: '登云桥', era: '维护保养', desc: '清代建、砖石结构，通城外道路，民国局部改建、主体留存。', features: ['技术改进', '防灾减灾'], source: '1. 清光绪《崖州志》：登云桥，清时建，砖石结构，通城外道路。', image: '../images/technology/DengYunQiao.jpg' }
         ]
     },
