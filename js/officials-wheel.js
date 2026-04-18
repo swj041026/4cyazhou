@@ -1,6 +1,6 @@
 /**
  * 崖州八大丞相 - 转盘交互组件
- * 实现转盘旋转、人物切换、内容展示等功能
+ * 实现转盘旋转、人物切换、四区域内容联动展示等功能
  */
 
 const OfficialsWheel = {
@@ -17,19 +17,18 @@ const OfficialsWheel = {
             era: '唐高宗时期',
             portrait: '../images/humanity/chengxiang/hanyuan.png',
             achievementImage: '../images/humanity/chengxiang/hanyuancon.png',
-            background: '韩瑗出身贵族名门，学识渊博、才华横溢。唐永徽四年(653)，韩瑗官拜同中书门三品，后晋升为侍中并兼任太子宾客。当时，唐高宗打算废黜王皇后，改立武昭仪(武则天)，这一举措遭到长孙无忌、褚遂良等佐命大臣的极力反对。韩瑗进谏劝阻，还为被贬的褚遂良进行辩护，此举激怒了唐高宗和武则天。显庆二年(657)，韩瑗被罢相，并贬为振州刺史，在治所崖城居住，他也是被贬至琼州的首位宰相。',
+            intro: '韩瑗出身贵族名门，学识渊博、才华横溢。唐永徽四年(653)，韩瑗官拜同中书门三品，后晋升为侍中并兼任太子宾客。当时，唐高宗打算废黜王皇后，改立武昭仪(武则天)，这一举措遭到长孙无忌、褚遂良等佐命大臣的极力反对。韩瑗进谏劝阻，还为被贬的褚遂良进行辩护，此举激怒了唐高宗和武则天。显庆二年(657)，韩瑗被罢相，并贬为振州刺史，在治所崖城居住，他也是被贬至琼州的首位宰相。',
             contributions: [
                 {
-                    title: '一、民生：开凿韩公井，解决千年饮水病疫',
+                    title: '开凿韩公井，解决千年饮水病疫',
                     details: [
                         '见当地百姓饮河塘积水、多发疫病，亲自勘探水源、教民凿井',
                         '今崖州水南村仍存"韩公井"(唐代遗存)，井水清冽、千年不涸，历代黎汉民众饮用'
                     ],
-                    significance: '改善公共卫生、减少疫病、稳定人口，为崖州早期聚落与古城发展打下基础',
-                    hasImage: true
+                    significance: '改善公共卫生、减少疫病、稳定人口，为崖州早期聚落与古城发展打下基础'
                 },
                 {
-                    title: '二、文教：首设乡学，传播中原礼乐',
+                    title: '首设乡学，传播中原礼乐',
                     details: [
                         '在简陋茅屋中创办乡学，招收黎汉子弟',
                         '亲自讲授《论语》，传播仁义礼智、忠君孝亲的中原礼教'
@@ -37,7 +36,7 @@ const OfficialsWheel = {
                     significance: '崖州第一次系统官办教育，开启"化外之地"向文明之邦的转变'
                 },
                 {
-                    title: '三、治理：以宰相之才整顿边陲州政',
+                    title: '以宰相之才整顿边陲州政',
                     details: [
                         '以振州刺史(军政一把手)身份整顿吏治、安抚黎汉、协和夷汉',
                         '推广中原农耕技术、水利、礼法制度'
@@ -45,14 +44,15 @@ const OfficialsWheel = {
                     significance: '稳定边陲秩序，为后世崖州建城、设治奠定治理与人口基础'
                 },
                 {
-                    title: '四、历史地位：谪琼名宦第一人',
+                    title: '谪琼名宦第一人',
                     details: [
                         '《崖州志》将其列入"名宦"，历代奉祀于名宦祠',
                         '开启唐宋宰相贬崖州的文化谱系(后有崔元综、卢多逊、赵鼎等)'
                     ],
                     significance: '以忠直不屈、勤政爱民的风范，塑造崖州"宰相流芳"的精神传统'
                 }
-            ]
+            ],
+            achievementCaption: '韩公井：位于崖州水南村，唐代遗存，井水清冽甘甜，千年不涸，是韩瑗在崖州期间为改善民生而开凿的水井，历代黎汉民众皆以此井水为饮。'
         },
         cuiyuanzong: {
             id: 'cuiyuanzong',
@@ -61,10 +61,11 @@ const OfficialsWheel = {
             title: '唐代武则天时期的宰相',
             era: '武则天时期',
             portrait: '../images/humanity/chengxiang/cuiyuanzong.png',
-            background: '崔元综，河南郑州新郑人，其家族世系源自以河北清河郡为郡望的"清河崔氏"。"清河崔氏"是中国历史上十大门阀士族之一，世代门阀昌盛，官位显耀。在北魏、北周乃至隋朝，均被列为大姓;至唐初，仍位列仅次于皇室李氏及皇后姓氏的五大姓氏之一。崔元综是唐代武则天时期的宰相，勤于内政，从不懈怠。长寿三年(694)八月，崔元综因"坐事"而被"流配"至海南岛最南端的振州(治所今三亚市崖州区崖城)，贬任振州"刺史"长达六年。',
+            noImageDesc: '崔元综出身"清河崔氏"名门望族，作为唐代武则天时期的宰相，他将中原先进的农耕技术与水利建设经验引入崖州，推动了当地农业生产的发展，为崖州的文明进步作出了重要贡献。',
+            intro: '崔元综，河南郑州新郑人，其家族世系源自以河北清河郡为郡望的"清河崔氏"。"清河崔氏"是中国历史上十大门阀士族之一，世代门阀昌盛，官位显耀。在北魏、北周乃至隋朝，均被列为大姓;至唐初，仍位列仅次于皇室李氏及皇后姓氏的五大姓氏之一。崔元综是唐代武则天时期的宰相，勤于内政，从不懈怠。长寿三年(694)八月，崔元综因"坐事"而被"流配"至海南岛最南端的振州(治所今三亚市崖州区崖城)，贬任振州"刺史"长达六年。',
             contributions: [
                 {
-                    title: '一、民生改良：引入中原农耕技术，重塑崖州生产格局',
+                    title: '引入中原农耕技术，重塑崖州生产格局',
                     details: [
                         '推广水利与农耕技术：借鉴益州任上治水经验，深入崖州黎汉村寨，勘察水土资源',
                         '引入中原水稻种植技术与梯田修筑方法，指导百姓开垦荒地、修筑田埂'
@@ -72,7 +73,7 @@ const OfficialsWheel = {
                     significance: '解决了崖州长期以来"耕作粗放、产量低下"的困境，显著提升粮食产量'
                 },
                 {
-                    title: '二、制度移植：完善振州州政，奠定治理根基',
+                    title: '完善振州州政，奠定治理根基',
                     details: [
                         '整顿地方吏治：以宰相政务经验，规范振州地方行政流程',
                         '推行中原礼法：将唐代礼仪制度与治理理念引入崖州'
@@ -80,14 +81,15 @@ const OfficialsWheel = {
                     significance: '改善边陲州政混乱局面，提升行政效率，加速"化外之地"的汉化进程'
                 },
                 {
-                    title: '三、文化启蒙：设馆授徒，开启崖州教育先河',
+                    title: '设馆授徒，开启崖州教育先河',
                     details: [
                         '创办乡学私塾：在振州故城设立简易学馆，招收黎汉子弟',
                         '传播多元知识：不仅教授《论语》等儒家经典，还传授天文历法、医药常识'
                     ],
                     significance: '打破崖州长期"无教化"的局面，成为崖州"崇文重教"传统的源头之一'
                 }
-            ]
+            ],
+            achievementCaption: '崔元综在崖州期间推广中原农耕技术与水利建设，改善了当地生产条件，为崖州农业发展奠定了重要基础。'
         },
         yangyan: {
             id: 'yangyan',
@@ -96,10 +98,11 @@ const OfficialsWheel = {
             title: '唐德宗时期的宰相',
             era: '唐德宗时期',
             portrait: '../images/humanity/chengxiang/yangyan.png',
-            background: '杨炎(721-781年),字公南，风翔府天兴县(今陕西省宝鸡市凤翔区)人，是唐朝第九位皇帝唐德宗朝时的宰相。他在任职宰相时，对财政、税收进行深化改革，创立实行了"两税制"，实现了中国古代社会农业税收结构，由人头税向资产税的重大转变、为后世所沿用和推行，具有深远的历史影响。后来,因皇权与相权的矛盾，杨炎被贬为崖州司马，留下了经典诗句"一去一万里，千知千不还。崖州何处在，生度鬼门关。"',
+            noImageDesc: '杨炎是唐代著名宰相，创立的两税法是中国古代赋税制度的重大变革。虽被贬崖州，但他留下的"一去一万里，千知千不还"诗句，成为崖州贬官文化的经典写照。',
+            intro: '杨炎(721-781年),字公南，风翔府天兴县(今陕西省宝鸡市凤翔区)人，是唐朝第九位皇帝唐德宗朝时的宰相。他在任职宰相时，对财政、税收进行深化改革，创立实行了"两税制"，实现了中国古代社会农业税收结构，由人头税向资产税的重大转变、为后世所沿用和推行，具有深远的历史影响。后来,因皇权与相权的矛盾，杨炎被贬为崖州司马，留下了经典诗句"一去一万里，千知千不还。崖州何处在，生度鬼门关。"',
             contributions: [
                 {
-                    title: '一、核心贡献：创立两税法',
+                    title: '创立两税法',
                     details: [
                         '废除唐初"租庸调制"（按人丁征税），改行两税法（建中元年，780年）',
                         '核心原则："唯以资产为宗，不以丁身为本"（按财产、田亩多少征税）',
@@ -108,7 +111,7 @@ const OfficialsWheel = {
                     significance: '沿用近800年（至明中期），是古代赋税制度的分水岭'
                 },
                 {
-                    title: '二、财政改革：厘清国库与皇库',
+                    title: '厘清国库与皇库',
                     details: [
                         '将国家财政（左藏库）与皇室私财（大盈库）分离',
                         '恢复户部（政府）掌管国家财税的权力'
@@ -116,7 +119,7 @@ const OfficialsWheel = {
                     significance: '结束宦官掌财权，强化中央集权'
                 },
                 {
-                    title: '三、政治与其他贡献',
+                    title: '政治与其他贡献',
                     details: [
                         '整顿吏治：裁汰冗官，改革科举选拔',
                         '抑制藩镇：削弱地方节度使财权',
@@ -124,7 +127,8 @@ const OfficialsWheel = {
                     ],
                     significance: '为后世政治、经济改革提供了重要借鉴'
                 }
-            ]
+            ],
+            achievementCaption: '杨炎创立的两税法是中国古代赋税制度的重要改革，按财产征税的原则影响深远，被誉为"古代赋税制度的分水岭"。'
         },
         weizhiyi: {
             id: 'weizhiyi',
@@ -134,32 +138,32 @@ const OfficialsWheel = {
             era: '唐顺宗时期',
             portrait: '../images/humanity/chengxiang/weizhiyi.png',
             achievementImage: '../images/humanity/chengxiang/weizhiyicon.png',
-            background: '韦执谊(764-812年)，字宗仁，京兆杜陵(今陕西西安市)人。唐朝时期宰相，二王八司马之一。韦执谊出身于京兆韦氏龙门公房，聪俊有才，进士及第，起家右拾遗。永贞元年(805年)，拜中书侍郎、同平章事，推行永贞革新，抑制宦官和藩镇势力。唐宪宗继位，被贬为崖州司马。韦执谊来到崖州后，并未因权势的落差而自暴自弃，相反，在崖州的几年时间里，他兴修水利，改造农田，兴办里学，教化民众，传播中原文化，受到百姓的爱戴，被尊称为"韦崖州"。',
+            intro: '韦执谊(764-812年)，字宗仁，京兆杜陵(今陕西西安市)人。唐朝时期宰相，二王八司马之一。韦执谊出身于京兆韦氏龙门公房，聪俊有才，进士及第，起家右拾遗。永贞元年(805年)，拜中书侍郎、同平章事，推行永贞革新，抑制宦官和藩镇势力。唐宪宗继位，被贬为崖州司马。韦执谊来到崖州后，并未因权势的落差而自暴自弃，相反，在崖州的几年时间里，他兴修水利，改造农田，兴办里学，教化民众，传播中原文化，受到百姓的爱戴，被尊称为"韦崖州"。',
             contributions: [
                 {
-                    title: '一、海南"都江堰"：岩塘陂·亭塘陂',
+                    title: '海南"都江堰"：岩塘陂·亭塘陂',
                     details: [
                         '主持修筑岩塘陂、亭塘陂（新旧沟），火山石砌堤、引水灌田',
                         '泽被3000亩韦公洋，沿用千年'
                     ],
-                    significance: '称海南水利第一工程，为琼北农业发展奠定基础',
-                    hasImage: true
+                    significance: '称海南水利第一工程，为琼北农业发展奠定基础'
                 },
                 {
-                    title: '二、教民耕牧，开发羊山',
+                    title: '教民耕牧，开发羊山',
                     details: [
                         '传中原农耕、教民牧羊，开发琼北羊山地区'
                     ],
                     significance: '被尊为"羊山祖师"，推动当地农牧业发展'
                 },
                 {
-                    title: '三、兴学教化，创建里学',
+                    title: '兴学教化，创建里学',
                     details: [
                         '办琼北最早乡里学堂，亲授诗书，传播儒学'
                     ],
                     significance: '启海南文教之先，为当地教育发展奠定基础'
                 }
-            ]
+            ],
+            achievementCaption: '岩塘陂·亭塘陂：韦执谊主持修筑的水利工程，被誉为"海南都江堰"，泽被3000亩韦公洋，沿用千年，是海南水利第一工程。'
         },
         luduoxun: {
             id: 'luduoxun',
@@ -168,17 +172,17 @@ const OfficialsWheel = {
             title: '北宋时期的开国宰相',
             era: '北宋开国',
             portrait: '../images/humanity/chengxiang/luduoxun.png',
-            background: '卢多逊(934一985年),怀州河内郡(今河南沁阳)人，是中国历史上著名的北宋开国宰相,政治家、军事家、文学家和史学家。开宝九年(976年)拜相，在位七年，却因卷入皇权内争，遭赵普构陷，于太平兴国七年(982年)被罢相削职流放至崖州(今三亚市崖州区崖城)。谪居崖州水南村期间，卢多逊超然宠辱，以诗寄情，其《水南村为黎伯淳题》生动描绘了崖州古代风物淳美、安居祥和的生活图景。',
+            intro: '卢多逊(934一985年),怀州河内郡(今河南沁阳)人，是中国历史上著名的北宋开国宰相,政治家、军事家、文学家和史学家。开宝九年(976年)拜相，在位七年，却因卷入皇权内争，遭赵普构陷，于太平兴国七年(982年)被罢相削职流放至崖州(今三亚市崖州区崖城)。谪居崖州水南村期间，卢多逊超然宠辱，以诗寄情，其《水南村为黎伯淳题》生动描绘了崖州古代风物淳美、安居祥和的生活图景。',
             contributions: [
                 {
-                    title: '一、中原文化南播第一人（宋代）',
+                    title: '中原文化南播第一人（宋代）',
                     details: [
                         '带家眷百口定居水南村，开堂讲学、传播儒学、礼乐、文字'
                     ],
                     significance: '是崖州"文教化之始"，推动当地文化发展'
                 },
                 {
-                    title: '二、改写崖州文化意象',
+                    title: '改写崖州文化意象',
                     details: [
                         '以《水南村为黎伯淳题》组诗，把崖州从"瘴疠鬼门关"写成"桃源"',
                         '珠崖风景水南村，山下人家林下门。鹦鹉巢时椰结子，鹧鸪啼处竹生孙。'
@@ -186,13 +190,14 @@ const OfficialsWheel = {
                     significance: '令"珠崖风景水南村"成为传诵千年的文化意象'
                 },
                 {
-                    title: '三、奠定崖州贬官文化',
+                    title: '奠定崖州贬官文化',
                     details: [
                         '作为宋代第一位流贬海南的宰相，开启苏轼、赵鼎、胡铨等名臣相继来琼的文脉传统'
                     ],
                     significance: '水南村成为"海南第一文化古村"，文脉延续千年'
                 }
-            ]
+            ],
+            achievementCaption: '水南村：卢多逊谪居之地，他在这里开堂讲学、传播中原文化，使水南村成为"海南第一文化古村"，文脉延续千年。'
         },
         dingwei: {
             id: 'dingwei',
@@ -201,17 +206,17 @@ const OfficialsWheel = {
             title: '北宋太宗、真宗、仁宗三朝元老',
             era: '北宋三朝',
             portrait: '../images/humanity/chengxiang/dingwei.png',
-            background: '丁谓(966-1037年),字谓之，后更字公言，北宋长洲(今江苏省苏州市)人，北宋太宗、真宗、仁宗三朝元老，当了七年宰相。丁谓聪明机智，多才多艺，任上多有建树与政绩。乾兴元年(1022)，因受"雷允恭擅移皇陵案"牵连被罢相，随后贬为崖州司户参军。丁谓在崖州逾三年，教人读书为文，营造屋宇，尤以撰写《天香传》影响深远。',
+            intro: '丁谓(966-1037年),字谓之，后更字公言，北宋长洲(今江苏省苏州市)人，北宋太宗、真宗、仁宗三朝元老，当了七年宰相。丁谓聪明机智，多才多艺，任上多有建树与政绩。乾兴元年(1022)，因受"雷允恭擅移皇陵案"牵连被罢相，随后贬为崖州司户参军。丁谓在崖州逾三年，教人读书为文，营造屋宇，尤以撰写《天香传》影响深远。',
             contributions: [
                 {
-                    title: '一、建筑革新：教民陶瓦',
+                    title: '建筑革新：教民陶瓦',
                     details: [
                         '传授烧砖制瓦、建造屋宇技术'
                     ],
                     significance: '结束崖州"茅檐草屋"历史，改善官民居住条件'
                 },
                 {
-                    title: '二、文教先驱：开蒙启智',
+                    title: '文教先驱：开蒙启智',
                     details: [
                         '崖州最早大规模办学讲学，比苏轼早70年',
                         '默记经书、教民读写，播撒文明火种'
@@ -219,14 +224,15 @@ const OfficialsWheel = {
                     significance: '开启崖州文教先河，培养大批人才'
                 },
                 {
-                    title: '三、沉香立典：《天香传》',
+                    title: '沉香立典：《天香传》',
                     details: [
                         '实地考察，著中国首部香学专著',
                         '定崖州沉香为天下第一'
                     ],
                     significance: '让海南香名扬千古，成为中国香文化的重要组成部分'
                 }
-            ]
+            ],
+            achievementCaption: '《天香传》：丁谓所著中国首部香学专著，将崖州沉香定为天下第一，使海南香名扬千古，成为中国香文化的重要组成部分。'
         },
         zhaoding: {
             id: 'zhaoding',
@@ -235,10 +241,10 @@ const OfficialsWheel = {
             title: '南宋高宗时期宰相',
             era: '南宋高宗',
             portrait: '../images/humanity/chengxiang/zhaoding.png',
-            background: '赵鼎(1085一1147年),字元镇，号得全居士，解州闻喜县(今山西省闻喜县礼元镇阜底村)人，南宋高宗时期名相，以忠直敢谏、处事明达著称，世誉"南宋贤相，首推赵鼎"。绍兴八年(1138年),因反对秦桧主导的宋金和议，遭其构陷，被罢相贬谪，最终流放至崖州。崖州太守裴闻义出于对他的崇敬之心和二人同为山西闻喜县人的同乡之情，将其接至崖州的裴家住宅(后称"盛德堂")居住。',
+            intro: '赵鼎(1085一1147年),字元镇，号得全居士，解州闻喜县(今山西省闻喜县礼元镇阜底村)人，南宋高宗时期名相，以忠直敢谏、处事明达著称，世誉"南宋贤相，首推赵鼎"。绍兴八年(1138年),因反对秦桧主导的宋金和议，遭其构陷，被罢相贬谪，最终流放至崖州。崖州太守裴闻义出于对他的崇敬之心和二人同为山西闻喜县人的同乡之情，将其接至崖州的裴家住宅(后称"盛德堂")居住。',
             contributions: [
                 {
-                    title: '一、贬官文化的气节高峰',
+                    title: '贬官文化的气节高峰',
                     details: [
                         '继卢多逊、丁谓之后，再一位宰相级名臣贬崖州',
                         '以绝食明志、以身殉国的悲壮气节'
@@ -246,7 +252,7 @@ const OfficialsWheel = {
                     significance: '将崖州贬官文化推向精神高峰'
                 },
                 {
-                    title: '二、盛德堂文脉传承',
+                    title: '盛德堂文脉传承',
                     details: [
                         '谪居水南村盛德堂（裴闻义宅）三年',
                         '讲学授徒、传播中原文化'
@@ -254,13 +260,14 @@ const OfficialsWheel = {
                     significance: '为崖州教育与文脉再添薪火'
                 },
                 {
-                    title: '三、诗文留天涯，家国精神',
+                    title: '诗文留天涯，家国精神',
                     details: [
                         '留下"身骑箕尾归天上，气作山河壮本朝"千古绝唱'
                     ],
                     significance: '强化天涯忠义、忠魂不朽的文化意象'
                 }
-            ]
+            ],
+            achievementCaption: '盛德堂：位于崖州水南村，赵鼎谪居之地。在这里他讲学授徒、传播中原文化，留下"身骑箕尾归天上，气作山河壮本朝"的千古绝唱。'
         },
         wangshixi: {
             id: 'wangshixi',
@@ -270,32 +277,32 @@ const OfficialsWheel = {
             era: '元朝',
             portrait: '../images/humanity/chengxiang/wangshixi.png',
             achievementImage: '../images/humanity/chengxiang/wangshixicon.png',
-            background: '王仕熙(约1265一1343)，是一位以诗文才华与高洁气节著称的士大夫。他本为朝中官员，因性格刚直，不畏权贵，敢于直言进谏，在复杂的政治斗争中不幸遭人构陷，被元朝朝廷贬谪至偏远的崖州(今海南省三亚市崖州区崖城)担任地方官职或流放于此。他的诗作，既有对贬谪生活艰辛的深刻体悟，也不乏对崖州自然风光的细腻描绘。',
+            intro: '王仕熙(约1265一1343)，是一位以诗文才华与高洁气节著称的士大夫。他本为朝中官员，因性格刚直，不畏权贵，敢于直言进谏，在复杂的政治斗争中不幸遭人构陷，被元朝朝廷贬谪至偏远的崖州(今海南省三亚市崖州区崖城)担任地方官职或流放于此。他的诗作，既有对贬谪生活艰辛的深刻体悟，也不乏对崖州自然风光的细腻描绘。',
             contributions: [
                 {
-                    title: '一、首创「崖州八景」，引入中原审美',
+                    title: '首创「崖州八景」，引入中原审美',
                     details: [
                         '贬居崖州5年，首次将中原「八景文化」带入海南',
                         '命名并赋诗崖州旧八景：鳌山白云、鲸海西风、边城斜照、水南暮雨、稻陇眠鸥、竹篱啼鸟、南山秋蟾、牧原芳草'
                     ],
-                    significance: '为崖州山水立名、立传、立景，被称为崖州最早的"清明上河图"',
-                    hasImage: true
+                    significance: '为崖州山水立名、立传、立景，被称为崖州最早的"清明上河图"'
                 },
                 {
-                    title: '二、更名南山为「鳌山」，奠定地标',
+                    title: '更名南山为「鳌山」，奠定地标',
                     details: [
                         '将崖州南山（今大小洞天）更名为鳌山'
                     ],
                     significance: '此名沿用至今，成为三亚核心文化地标'
                 },
                 {
-                    title: '三、赋诗纪事，留存元代崖州全景',
+                    title: '赋诗纪事，留存元代崖州全景',
                     details: [
                         '八景诗生动记录800年前崖州的田园、渔市、椰林、疍家风情'
                     ],
                     significance: '是研究元代海南社会、风物、生态的珍贵诗史'
                 }
-            ]
+            ],
+            achievementCaption: '崖州八景：王仕熙首创的崖州八景文化，包括鳌山白云、鲸海西风、边城斜照、水南暮雨等，为崖州山水立名立传，被称为崖州最早的"清明上河图"。'
         }
     },
 
@@ -312,7 +319,7 @@ const OfficialsWheel = {
         const container = document.getElementById('wheel-items-container');
         if (!container) return;
 
-        const radius = 160; // 转盘半径
+        const radius = 145; // 转盘半径
         const totalItems = this.officialsList.length;
 
         this.officialsList.forEach((officialId, index) => {
@@ -399,32 +406,30 @@ const OfficialsWheel = {
         const centerPortrait = document.getElementById('wheel-center-portrait');
         if (centerPortrait) {
             centerPortrait.style.opacity = '0';
+            centerPortrait.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 centerPortrait.src = data.portrait;
                 centerPortrait.alt = data.name;
                 centerPortrait.style.opacity = '1';
+                centerPortrait.style.transform = 'scale(1)';
             }, 200);
         }
 
-        // 更新右侧信息区（带淡入动画）
+        // 更新四个区域内容
         this.updateInfoArea(data);
+        this.updateContributionsArea(data);
+        this.updateAchievementArea(data);
     },
 
+    // 更新右上区域：人物信息展示
     updateInfoArea(data) {
-        // 更新人物简介卡片
-        const introCard = document.getElementById('official-intro-card');
-        const contributionsSection = document.getElementById('official-contributions-section');
-
-        if (introCard) {
-            introCard.classList.remove('fade-in');
-            void introCard.offsetWidth; // 触发重排
-            introCard.classList.add('fade-in');
-        }
-
-        if (contributionsSection) {
-            contributionsSection.classList.remove('fade-in');
-            void contributionsSection.offsetWidth; // 触发重排
-            contributionsSection.classList.add('fade-in');
+        const infoCard = document.getElementById('official-info-card');
+        
+        if (infoCard) {
+            // 添加淡入动画
+            infoCard.classList.remove('fade-in');
+            void infoCard.offsetWidth; // 触发重排
+            infoCard.classList.add('fade-in');
         }
 
         // 更新时代标签
@@ -443,15 +448,25 @@ const OfficialsWheel = {
         const periodEl = document.getElementById('official-period');
         if (periodEl) periodEl.textContent = data.period;
 
-        // 更新背景
-        const backgroundEl = document.getElementById('official-background');
-        if (backgroundEl) backgroundEl.textContent = data.background;
+        // 更新简介
+        const introEl = document.getElementById('official-intro');
+        if (introEl) introEl.textContent = data.intro;
+    },
 
-        // 更新贡献
-        const contributionsGrid = document.getElementById('contributions-grid');
-        if (contributionsGrid) {
-            contributionsGrid.innerHTML = data.contributions.map(c => `
-                <div class="contribution-item">
+    // 更新左下区域：人物贡献展示
+    updateContributionsArea(data) {
+        const contributionsCard = document.getElementById('contributions-card');
+        const contributionsList = document.getElementById('contributions-list');
+
+        if (contributionsCard) {
+            contributionsCard.classList.remove('fade-in');
+            void contributionsCard.offsetWidth;
+            contributionsCard.classList.add('fade-in');
+        }
+
+        if (contributionsList && data.contributions) {
+            contributionsList.innerHTML = data.contributions.map((c, i) => `
+                <div class="contribution-item" style="animation-delay: ${i * 0.1}s">
                     <div class="contribution-title">${c.title}</div>
                     <div class="contribution-details">
                         ${c.details.map(d => `<p>${d}</p>`).join('')}
@@ -460,23 +475,56 @@ const OfficialsWheel = {
                 </div>
             `).join('');
         }
+    },
 
-        // 更新成就配图
-        const achievementShowcase = document.getElementById('achievement-showcase');
+    // 更新下段：整合的贡献展示区（包含图片和贡献列表）
+    updateAchievementArea(data) {
+        const combinedCard = document.getElementById('combined-contributions-card');
         const achievementImage = document.getElementById('achievement-image');
         const achievementCaption = document.getElementById('achievement-caption');
+        const combinedImageWrapper = document.getElementById('combined-image-wrapper');
+        const combinedPlaceholder = document.getElementById('combined-placeholder');
+        const placeholderDesc = document.getElementById('placeholder-desc');
 
-        if (achievementShowcase && achievementImage && achievementCaption) {
-            if (data.achievementImage) {
-                achievementShowcase.style.display = 'block';
+        if (combinedCard) {
+            combinedCard.classList.remove('fade-in');
+            void combinedCard.offsetWidth;
+            combinedCard.classList.add('fade-in');
+        }
+
+        // 处理图片显示
+        if (data.achievementImage) {
+            // 有图片时显示图片
+            if (combinedImageWrapper) combinedImageWrapper.style.display = 'block';
+            if (combinedPlaceholder) combinedPlaceholder.style.display = 'none';
+            
+            if (achievementImage) {
+                achievementImage.style.opacity = '0';
+                // 先移除旧的事件监听器，避免重复触发
+                achievementImage.onload = null;
+                achievementImage.onload = () => {
+                    achievementImage.style.opacity = '1';
+                    // 图片加载完成后，重新绑定查看器事件
+                    setTimeout(() => {
+                        if (window.ImageViewer && typeof window.ImageViewer.bindImageClickEvents === 'function') {
+                            window.ImageViewer.bindImageClickEvents();
+                        }
+                    }, 50);
+                };
                 achievementImage.src = data.achievementImage;
-                // 找到带有hasImage的成就项作为标题
-                const imageContribution = data.contributions.find(c => c.hasImage);
-                achievementCaption.textContent = imageContribution ? imageContribution.title : '';
-            } else {
-                achievementShowcase.style.display = 'none';
-                achievementImage.src = '';
-                achievementCaption.textContent = '';
+            }
+            
+            if (achievementCaption) {
+                achievementCaption.textContent = data.achievementCaption || '';
+            }
+        } else {
+            // 无图片时显示占位符和文字说明
+            if (combinedImageWrapper) combinedImageWrapper.style.display = 'none';
+            if (combinedPlaceholder) combinedPlaceholder.style.display = 'flex';
+            
+            // 更新占位符中的描述文字
+            if (placeholderDesc) {
+                placeholderDesc.textContent = data.noImageDesc || `${data.name}在崖州期间留下了深远的文化影响，其精神遗产至今仍在当地传承。`;
             }
         }
     }
@@ -485,9 +533,214 @@ const OfficialsWheel = {
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
     OfficialsWheel.init();
+    ImageViewer.init();
 });
 
 // 导出模块（用于测试）
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = OfficialsWheel;
+    module.exports = { OfficialsWheel, ImageViewer };
 }
+
+/**
+ * 图片放大查看器组件
+ * 实现点击卡片图片放大查看功能
+ */
+const ImageViewer = {
+    overlay: null,
+    container: null,
+    img: null,
+    caption: null,
+    closeBtn: null,
+    currentImageSrc: '',
+    currentCaption: '',
+
+    init() {
+        this.createViewerElements();
+        this.bindEvents();
+    },
+
+    // 创建查看器DOM元素
+    createViewerElements() {
+        // 创建遮罩层
+        this.overlay = document.createElement('div');
+        this.overlay.className = 'image-viewer-overlay';
+        this.overlay.setAttribute('role', 'dialog');
+        this.overlay.setAttribute('aria-modal', 'true');
+        this.overlay.setAttribute('aria-label', '图片放大查看');
+
+        // 创建容器
+        this.container = document.createElement('div');
+        this.container.className = 'image-viewer-container';
+
+        // 创建关闭按钮
+        this.closeBtn = document.createElement('button');
+        this.closeBtn.className = 'image-viewer-close';
+        this.closeBtn.innerHTML = '&times;';
+        this.closeBtn.setAttribute('aria-label', '关闭图片查看器');
+        this.closeBtn.setAttribute('title', '关闭 (ESC)');
+
+        // 创建图片元素
+        this.img = document.createElement('img');
+        this.img.className = 'image-viewer-img';
+        this.img.alt = '';
+
+        // 创建标题元素
+        this.caption = document.createElement('div');
+        this.caption.className = 'image-viewer-caption';
+
+        // 组装DOM结构
+        this.container.appendChild(this.closeBtn);
+        this.container.appendChild(this.img);
+        this.container.appendChild(this.caption);
+        this.overlay.appendChild(this.container);
+        document.body.appendChild(this.overlay);
+    },
+
+    // 绑定事件
+    bindEvents() {
+        // 关闭按钮点击事件
+        this.closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.close();
+        });
+
+        // 点击遮罩层关闭
+        this.overlay.addEventListener('click', (e) => {
+            if (e.target === this.overlay) {
+                this.close();
+            }
+        });
+
+        // 键盘事件（ESC关闭）
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.overlay.classList.contains('active')) {
+                this.close();
+            }
+        });
+
+        // 为卡片图片绑定点击事件
+        this.bindImageClickEvents();
+
+        // 监听人物切换事件，重新绑定图片点击
+        this.setupMutationObserver();
+    },
+
+    // 设置MutationObserver监听DOM变化
+    setupMutationObserver() {
+        const observer = new MutationObserver((mutations) => {
+            let shouldRebind = false;
+            
+            mutations.forEach((mutation) => {
+                // 监听style属性变化（显示/隐藏）
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    shouldRebind = true;
+                }
+                // 监听子节点变化（图片更换）
+                if (mutation.type === 'childList') {
+                    shouldRebind = true;
+                }
+            });
+            
+            if (shouldRebind) {
+                // 延迟执行，确保DOM更新完成
+                setTimeout(() => {
+                    this.bindImageClickEvents();
+                }, 100);
+            }
+        });
+
+        const imageWrapper = document.getElementById('combined-image-wrapper');
+        if (imageWrapper) {
+            observer.observe(imageWrapper, { 
+                attributes: true, 
+                attributeFilter: ['style', 'src'],
+                childList: true,
+                subtree: true
+            });
+        }
+        
+        this.observer = observer;
+    },
+
+    // 绑定图片点击事件
+    bindImageClickEvents() {
+        const imageWrapper = document.getElementById('combined-image-wrapper');
+        const img = document.getElementById('achievement-image');
+        
+        if (!imageWrapper || !img) return;
+        if (imageWrapper.style.display === 'none') return;
+        
+        // 如果已经绑定过事件，先移除
+        if (imageWrapper.dataset.viewerBound === 'true') {
+            imageWrapper.removeEventListener('click', this.handleImageClick);
+            img.removeEventListener('load', this.handleImageLoad);
+        }
+        
+        // 图片加载完成后的处理
+        this.handleImageLoad = () => {
+            imageWrapper.style.cursor = 'zoom-in';
+        };
+        
+        // 绑定点击事件
+        this.handleImageClick = (e) => {
+            const caption = document.getElementById('achievement-caption');
+            const currentImg = document.getElementById('achievement-image');
+            
+            // 检查图片是否有效加载
+            if (currentImg && currentImg.src && 
+                currentImg.src !== '' && 
+                !currentImg.src.endsWith('/') && 
+                currentImg.complete && 
+                currentImg.naturalWidth > 0) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.open(currentImg.src, caption ? caption.textContent : '');
+            }
+        };
+        
+        imageWrapper.addEventListener('click', this.handleImageClick);
+        img.addEventListener('load', this.handleImageLoad);
+        imageWrapper.dataset.viewerBound = 'true';
+        
+        // 如果图片已经加载完成，设置cursor
+        if (img.complete && img.naturalWidth > 0) {
+            imageWrapper.style.cursor = 'zoom-in';
+        }
+    },
+
+    // 打开查看器
+    open(imageSrc, captionText) {
+        if (!imageSrc) return;
+
+        this.currentImageSrc = imageSrc;
+        this.currentCaption = captionText || '';
+
+        // 设置图片和标题
+        this.img.src = imageSrc;
+        this.caption.textContent = this.currentCaption;
+
+        // 显示查看器
+        this.overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 禁止背景滚动
+
+        // 聚焦到关闭按钮（无障碍）
+        setTimeout(() => {
+            this.closeBtn.focus();
+        }, 100);
+    },
+
+    // 关闭查看器
+    close() {
+        this.overlay.classList.remove('active');
+        document.body.style.overflow = ''; // 恢复背景滚动
+
+        // 延迟清空图片源
+        setTimeout(() => {
+            this.img.src = '';
+            this.caption.textContent = '';
+        }, 400);
+    }
+};
+
+// 将ImageViewer挂载到window对象，方便其他模块调用
+window.ImageViewer = ImageViewer;

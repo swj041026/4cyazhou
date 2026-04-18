@@ -70,7 +70,7 @@
     <div class="assistant-float" id="assistant-float">
         <div class="assistant-header" id="assistant-header">
             <div class="assistant-title">
-                <span class="assistant-icon">🤖</span>
+                <img src="images/content/Agent.png" alt="智能助手" class="assistant-icon">
                 <span>崖城智查</span>
                 <span class="assistant-badge">AI</span>
             </div>
@@ -133,20 +133,45 @@
     
     <div class="global-controls">
         <button id="assistant-toggle" class="control-btn" title="智能助手">
-            <span>🤖</span>
+            <img src="images/content/Agent.png" alt="智能助手">
         </button>
-        <button id="audio-btn" class="control-btn" title="背景音乐">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-                <line x1="23" y1="9" x2="17" y2="15"/>
-                <line x1="17" y1="9" x2="23" y2="15"/>
-            </svg>
-        </button>
-        <button id="font-btn" class="control-btn" title="字体大小">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
-            </svg>
-        </button>
+        <div class="audio-control-wrapper">
+            <button id="audio-btn" class="control-btn" title="背景音乐">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                    <line x1="23" y1="9" x2="17" y2="15"/>
+                    <line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+            </button>
+            <!-- 音频控制面板 -->
+            <div id="audio-panel" class="audio-panel">
+                <div class="audio-panel-header">
+                    <span class="audio-title">背景音乐</span>
+                    <button id="audio-play-pause" class="audio-play-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="audio-progress-wrapper">
+                    <span id="audio-current-time" class="audio-time">0:00</span>
+                    <div id="audio-progress" class="audio-progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span id="audio-duration" class="audio-time">0:00</span>
+                </div>
+                <div class="audio-volume-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="volume-icon">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                    </svg>
+                    <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="30">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="volume-icon">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
         <button id="top-btn" class="control-btn" title="回到顶部">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 19V5M5 12l7-7 7 7"/>

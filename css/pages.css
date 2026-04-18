@@ -472,21 +472,21 @@
 .layout-diagram {
     flex: 1;
     background: var(--color-white);
-    padding: 3rem 1.5rem;
+    padding: 0.25rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-height: 400px;
 }
 
 .layout-image {
     width: 100%;
+    max-width: 100%;
     height: auto;
-    max-height: 600px;
     object-fit: contain;
-    transform: rotate(90deg);
 }
 
 .layout-features {
@@ -2058,6 +2058,26 @@
     margin-bottom: 1.5rem;
     text-align: justify;
     font-size: var(--text-base);
+}
+
+.card-image {
+    margin-bottom: 1.25rem;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 200px;
+    transition: transform 0.3s ease;
+}
+
+.card-image img:hover {
+    transform: scale(1.03);
 }
 
 .card-details {
