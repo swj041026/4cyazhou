@@ -131,25 +131,35 @@ const PageProgress = {
 const GlobalControls = {
     audioBtn: null,
     topBtn: null,
-    fontBtn: null,
     isPlaying: false,
     audioElement: null,
     volume: 0.3,
     progressInterval: null,
-    fontSize: 16,
+    audioPanel: null,
+    volumeSlider: null,
+    progressBar: null,
+    currentTimeEl: null,
+    durationEl: null,
+    playPauseBtn: null,
 
     init() {
         this.audioBtn = document.getElementById('audio-btn');
         this.topBtn = document.getElementById('top-btn');
-        this.fontBtn = document.getElementById('font-btn');
+        this.audioPanel = document.getElementById('audio-panel');
+        this.volumeSlider = document.getElementById('volume-slider');
+        this.progressBar = document.getElementById('audio-progress');
+        this.currentTimeEl = document.getElementById('audio-current-time');
+        this.durationEl = document.getElementById('audio-duration');
+        this.playPauseBtn = document.getElementById('audio-play-pause');
 
         this.loadAudioState();
         this.bindEvents();
+        this.initAudioPanel();
     },
 
     bindEvents() {
         if (this.audioBtn) {
-            this.audioBtn.addEventListener('click', () => this.toggleAudio());
+            this.audioBtn.addEventListener('click', () => this.toggleAudioPanel());
         }
 
         if (this.topBtn) {
@@ -158,8 +168,66 @@ const GlobalControls = {
             });
         }
 
-        if (this.fontBtn) {
-            this.fontBtn.addEventListener('click', () => this.toggleFontSize());
+        // 播放/暂停按钮
+        if (this.playPauseBtn) {
+            this.playPauseBtn.addEventListener('click', () => this.toggleAudio());
+        }
+
+        // 音量调节
+        if (this.volumeSlider) {
+            this.volumeSlider.addEventListener('input', (e) => {
+                this.setVolume(e.target.value / 100);
+            });
+        }
+
+        // 进度条控制
+        if (this.progressBar) {
+            this.progressBar.addEventListener('click', (e) => {
+                if (this.audioElement) {
+                    const rect = this.progressBar.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    this.audioElement.currentTime = percent * this.audioElement.duration;
+                    this.updateProgress();
+                }
+            });
+        }
+
+        // 点击面板外部关闭
+        document.addEventListener('click', (e) => {
+            if (this.audioPanel && !this.audioPanel.contains(e.target) && !this.audioBtn.contains(e.target)) {
+                this.hideAudioPanel();
+            }
+        });
+    },
+
+    initAudioPanel() {
+        if (this.volumeSlider && this.audioElement) {
+            this.volumeSlider.value = this.volume * 100;
+        }
+    },
+
+    toggleAudioPanel() {
+        if (this.audioPanel) {
+            if (this.audioPanel.classList.contains('active')) {
+                this.hideAudioPanel();
+            } else {
+                this.showAudioPanel();
+            }
+        } else {
+            this.toggleAudio();
+        }
+    },
+
+    showAudioPanel() {
+        if (this.audioPanel) {
+            this.audioPanel.classList.add('active');
+            this.updateProgress();
+        }
+    },
+
+    hideAudioPanel() {
+        if (this.audioPanel) {
+            this.audioPanel.classList.remove('active');
         }
     },
 
@@ -196,6 +264,7 @@ const GlobalControls = {
         this.progressInterval = setInterval(() => {
             if (this.isPlaying && this.audioElement) {
                 this.saveAudioState();
+                this.updateProgress();
             }
         }, 1000);
     },
@@ -205,6 +274,38 @@ const GlobalControls = {
             clearInterval(this.progressInterval);
             this.progressInterval = null;
         }
+    },
+
+    updateProgress() {
+        if (this.audioElement && this.progressBar) {
+            const percent = (this.audioElement.currentTime / this.audioElement.duration) * 100;
+            const progressFill = this.progressBar.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = percent + '%';
+            }
+            
+            if (this.currentTimeEl) {
+                this.currentTimeEl.textContent = this.formatTime(this.audioElement.currentTime);
+            }
+            if (this.durationEl && this.audioElement.duration) {
+                this.durationEl.textContent = this.formatTime(this.audioElement.duration);
+            }
+        }
+    },
+
+    formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    },
+
+    setVolume(value) {
+        this.volume = Math.max(0, Math.min(1, value));
+        if (this.audioElement) {
+            this.audioElement.volume = this.volume;
+        }
+        this.saveAudioState();
     },
 
     toggleAudio() {
@@ -219,11 +320,16 @@ const GlobalControls = {
         try {
             if (!this.audioElement) {
                 const audioPath = window.location.pathname.includes('/pages/') 
-                    ? '../bkmusic/古风温馨的纯音乐-宁静纯洁-清明时节_爱给网_aigei_com.mp3'
-                    : './bkmusic/古风温馨的纯音乐-宁静纯洁-清明时节_爱给网_aigei_com.mp3';
+                    ? '../bkmusic/bgmusic.mp3'
+                    : './bkmusic/bgmusic.mp3';
                 this.audioElement = new Audio(audioPath);
                 this.audioElement.loop = true;
                 this.audioElement.volume = this.volume;
+                
+                // 监听音频加载完成
+                this.audioElement.addEventListener('loadedmetadata', () => {
+                    this.updateProgress();
+                });
             }
 
             this.audioElement.play();
@@ -242,11 +348,15 @@ const GlobalControls = {
             try {
                 if (!this.audioElement) {
                     const audioPath = window.location.pathname.includes('/pages/') 
-                        ? '../bkmusic/古风温馨的纯音乐-宁静纯洁-清明时节_爱给网_aigei_com.mp3'
-                        : './bkmusic/古风温馨的纯音乐-宁静纯洁-清明时节_爱给网_aigei_com.mp3';
+                        ? '../bkmusic/bgmusic.mp3'
+                        : './bkmusic/bgmusic.mp3';
                     this.audioElement = new Audio(audioPath);
                     this.audioElement.loop = true;
                     this.audioElement.volume = this.volume;
+                    
+                    this.audioElement.addEventListener('loadedmetadata', () => {
+                        this.updateProgress();
+                    });
                 }
                 
                 if (savedTime > 0) {
@@ -287,11 +397,16 @@ const GlobalControls = {
         } else {
             svg.innerHTML = '<path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
         }
-    },
-
-    toggleFontSize() {
-        this.fontSize = this.fontSize === 16 ? 18 : (this.fontSize === 18 ? 14 : 16);
-        document.documentElement.style.fontSize = this.fontSize + 'px';
+        
+        // 更新面板中的播放按钮图标
+        if (this.playPauseBtn) {
+            const playSvg = this.playPauseBtn.querySelector('svg');
+            if (playing) {
+                playSvg.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+            } else {
+                playSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            }
+        }
     }
 };
 
@@ -425,12 +540,14 @@ const Assistant = {
     messagesContainer: null,
     loading: null,
     quickQuestions: null,
-    
+
     isDragging: false,
     dragStartX: 0,
     dragStartY: 0,
     floatStartX: 0,
     floatStartY: 0,
+    lastX: 0,
+    lastY: 0,
     
     conversationHistory: [],
     maxHistoryLength: 10,
@@ -594,26 +711,42 @@ const Assistant = {
         this.messagesContainer = document.getElementById('chat-messages');
         this.loading = document.getElementById('chat-loading');
         this.quickQuestions = document.getElementById('quick-questions');
-        
+
         if (!this.float) return;
-        
+
+        this.loadSavedPosition();
         this.loadConversationHistory();
         this.bindEvents();
         this.renderWelcomeMessage();
     },
     
     bindEvents() {
+        // 鼠标拖拽事件
         this.header.addEventListener('mousedown', (e) => this.startDrag(e));
+
+        // 触摸拖拽事件（移动端支持）
+        this.header.addEventListener('touchstart', (e) => this.startDrag(e), { passive: false });
+
         this.closeBtn.addEventListener('click', () => this.hide());
         this.minBtn.addEventListener('click', () => this.minimize());
-        this.toggleBtn.addEventListener('click', () => this.toggle());
-        
+        this.toggleBtn.addEventListener('click', (e) => {
+            // 检查是否刚刚完成了拖拽操作
+            // 如果是拖拽，则忽略此次点击，不显示浮窗
+            if (typeof AssistantToggleDrag !== 'undefined' && AssistantToggleDrag.justDragged()) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+            // 正常的点击操作，切换浮窗显示状态
+            this.toggle();
+        });
+
         // 清空对话按钮
         const clearBtn = document.getElementById('assistant-clear');
         if (clearBtn) {
             clearBtn.addEventListener('click', () => this.clearConversation());
         }
-        
+
         this.searchBtn.addEventListener('click', () => this.sendMessage());
         this.input.addEventListener('keyup', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -621,7 +754,7 @@ const Assistant = {
                 this.sendMessage();
             }
         });
-        
+
         // 快捷问题按钮
         if (this.quickQuestions) {
             this.quickQuestions.addEventListener('click', (e) => {
@@ -632,9 +765,18 @@ const Assistant = {
                 }
             });
         }
-        
+
+        // 鼠标移动和释放
         document.addEventListener('mousemove', (e) => this.drag(e));
         document.addEventListener('mouseup', () => this.stopDrag());
+
+        // 触摸移动和释放
+        document.addEventListener('touchmove', (e) => this.drag(e), { passive: false });
+        document.addEventListener('touchend', () => this.stopDrag());
+        document.addEventListener('touchcancel', () => this.stopDrag());
+
+        // 窗口大小改变时重新调整位置
+        window.addEventListener('resize', utils.throttle(() => this.adjustPositionOnResize(), 200));
     },
     
     clearConversation() {
@@ -647,31 +789,139 @@ const Assistant = {
     },
     
     startDrag(e) {
+        // 防止点击按钮时触发拖拽
+        if (e.target.closest('.assistant-btn')) return;
+
+        e.preventDefault();
         this.isDragging = true;
-        this.dragStartX = e.clientX;
-        this.dragStartY = e.clientY;
+
+        // 获取触摸或鼠标位置
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        this.dragStartX = clientX;
+        this.dragStartY = clientY;
         this.floatStartX = this.float.offsetLeft;
         this.floatStartY = this.float.offsetTop;
-        this.float.style.cursor = 'grabbing';
+        this.lastX = this.floatStartX;
+        this.lastY = this.floatStartY;
+
+        // 添加拖拽状态样式
+        this.float.classList.add('dragging');
+        this.float.style.transition = 'none';
+
+        // 防止文本选择
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
     },
-    
+
     drag(e) {
         if (!this.isDragging) return;
-        const dx = e.clientX - this.dragStartX;
-        const dy = e.clientY - this.dragStartY;
+
+        e.preventDefault();
+
+        // 获取触摸或鼠标位置
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - this.dragStartX;
+        const dy = clientY - this.dragStartY;
+
         let newX = this.floatStartX + dx;
         let newY = this.floatStartY + dy;
-        
-        newX = Math.max(0, Math.min(newX, window.innerWidth - this.float.offsetWidth));
-        newY = Math.max(0, Math.min(newY, window.innerHeight - this.float.offsetHeight));
-        
+
+        // 边界检测 - 限制在可视窗口内
+        const margin = 10; // 留出边距
+        const maxX = window.innerWidth - this.float.offsetWidth - margin;
+        const maxY = window.innerHeight - this.float.offsetHeight - margin;
+
+        newX = Math.max(margin, Math.min(newX, maxX));
+        newY = Math.max(margin, Math.min(newY, maxY));
+
+        // 应用新位置
         this.float.style.left = newX + 'px';
         this.float.style.top = newY + 'px';
+        this.float.style.right = 'auto'; // 清除 right 属性
+
+        // 保存当前位置（用于动画）
+        this.lastX = newX;
+        this.lastY = newY;
     },
-    
+
     stopDrag() {
+        if (!this.isDragging) return;
+
         this.isDragging = false;
-        this.float.style.cursor = '';
+
+        // 移除拖拽状态样式
+        this.float.classList.remove('dragging');
+        this.float.style.transition = '';
+
+        // 恢复文本选择
+        document.body.style.userSelect = '';
+        document.body.style.webkitUserSelect = '';
+
+        // 保存位置到本地存储
+        this.savePosition();
+
+        // 添加轻微的弹跳效果
+        this.float.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+            this.float.style.transform = 'scale(1)';
+        }, 150);
+    },
+
+    savePosition() {
+        const position = {
+            x: this.float.offsetLeft,
+            y: this.float.offsetTop,
+            timestamp: Date.now()
+        };
+        utils.storage.set('assistantPosition', position);
+    },
+
+    loadSavedPosition() {
+        const savedPosition = utils.storage.get('assistantPosition', null);
+
+        if (savedPosition && this.float) {
+            // 检查保存的位置是否仍然有效（在24小时内）
+            const isRecent = (Date.now() - savedPosition.timestamp) < 24 * 60 * 60 * 1000;
+
+            if (isRecent) {
+                // 确保位置在有效范围内
+                const margin = 10;
+                const maxX = window.innerWidth - this.float.offsetWidth - margin;
+                const maxY = window.innerHeight - this.float.offsetHeight - margin;
+
+                const x = Math.max(margin, Math.min(savedPosition.x, maxX));
+                const y = Math.max(margin, Math.min(savedPosition.y, maxY));
+
+                this.float.style.left = x + 'px';
+                this.float.style.top = y + 'px';
+                this.float.style.right = 'auto';
+            }
+        }
+    },
+
+    adjustPositionOnResize() {
+        if (!this.float) return;
+
+        // 调整位置确保浮窗仍在可视区域内
+        const currentX = this.float.offsetLeft;
+        const currentY = this.float.offsetTop;
+
+        const margin = 10;
+        const maxX = window.innerWidth - this.float.offsetWidth - margin;
+        const maxY = window.innerHeight - this.float.offsetHeight - margin;
+
+        const newX = Math.max(margin, Math.min(currentX, maxX));
+        const newY = Math.max(margin, Math.min(currentY, maxY));
+
+        if (newX !== currentX || newY !== currentY) {
+            this.float.style.left = newX + 'px';
+            this.float.style.top = newY + 'px';
+            this.savePosition();
+        }
     },
     
     renderWelcomeMessage() {
@@ -776,7 +1026,7 @@ const Assistant = {
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message ${role}`;
         
-        const avatar = role === 'user' ? '👤' : '🤖';
+        const avatar = role === 'user' ? '👤' : '<img src="../images/content/Agent.png" alt="智能助手" class="avatar-img">';
         const name = role === 'user' ? '您' : '崖城智查';
         
         // 将换行符转换为HTML
@@ -861,6 +1111,207 @@ const Assistant = {
     }
 };
 
+// ===== 智能助手图标拖拽功能 =====
+const AssistantToggleDrag = {
+    toggleBtn: null,
+    isDragging: false,
+    wasDragged: false,  // 标记是否发生了实际的拖拽操作
+    dragStartX: 0,
+    dragStartY: 0,
+    btnStartX: 0,
+    btnStartY: 0,
+    dragThreshold: 5,  // 拖拽判定阈值（像素）
+
+    init() {
+        this.toggleBtn = document.getElementById('assistant-toggle');
+        if (!this.toggleBtn) return;
+
+        // 添加可拖拽样式类
+        this.toggleBtn.classList.add('draggable');
+
+        // 加载保存的位置
+        this.loadSavedPosition();
+
+        // 绑定事件
+        this.bindEvents();
+    },
+
+    bindEvents() {
+        // 鼠标事件
+        this.toggleBtn.addEventListener('mousedown', (e) => this.startDrag(e));
+
+        // 触摸事件（移动端支持）
+        this.toggleBtn.addEventListener('touchstart', (e) => this.startDrag(e), { passive: false });
+
+        // 全局移动和释放事件
+        document.addEventListener('mousemove', (e) => this.drag(e));
+        document.addEventListener('mouseup', () => this.stopDrag());
+
+        document.addEventListener('touchmove', (e) => this.drag(e), { passive: false });
+        document.addEventListener('touchend', () => this.stopDrag());
+        document.addEventListener('touchcancel', () => this.stopDrag());
+
+        // 窗口大小改变时调整位置
+        window.addEventListener('resize', utils.throttle(() => this.adjustPositionOnResize(), 200));
+    },
+
+    startDrag(e) {
+        // 只响应左键或触摸
+        if (e.type === 'mousedown' && e.button !== 0) return;
+
+        e.preventDefault();
+        this.isDragging = true;
+        this.wasDragged = false;  // 重置拖拽标记
+
+        // 获取触摸或鼠标位置
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        // 获取按钮当前位置
+        const rect = this.toggleBtn.getBoundingClientRect();
+
+        this.dragStartX = clientX;
+        this.dragStartY = clientY;
+        this.btnStartX = rect.left;
+        this.btnStartY = rect.top;
+
+        // 添加拖拽状态样式
+        this.toggleBtn.classList.add('dragging');
+
+        // 切换为绝对定位以便自由移动
+        this.toggleBtn.style.position = 'fixed';
+        this.toggleBtn.style.left = this.btnStartX + 'px';
+        this.toggleBtn.style.top = this.btnStartY + 'px';
+        this.toggleBtn.style.right = 'auto';
+        this.toggleBtn.style.bottom = 'auto';
+
+        // 防止文本选择
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
+    },
+
+    drag(e) {
+        if (!this.isDragging) return;
+
+        e.preventDefault();
+
+        // 获取触摸或鼠标位置
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const dx = clientX - this.dragStartX;
+        const dy = clientY - this.dragStartY;
+
+        // 检查是否超过拖拽阈值
+        if (Math.abs(dx) > this.dragThreshold || Math.abs(dy) > this.dragThreshold) {
+            this.wasDragged = true;  // 标记为已拖拽
+        }
+
+        let newX = this.btnStartX + dx;
+        let newY = this.btnStartY + dy;
+
+        // 边界检测 - 限制在可视窗口内
+        const margin = 10;
+        const btnWidth = this.toggleBtn.offsetWidth || 56;
+        const btnHeight = this.toggleBtn.offsetHeight || 56;
+        const maxX = window.innerWidth - btnWidth - margin;
+        const maxY = window.innerHeight - btnHeight - margin;
+
+        newX = Math.max(margin, Math.min(newX, maxX));
+        newY = Math.max(margin, Math.min(newY, maxY));
+
+        // 应用新位置
+        this.toggleBtn.style.left = newX + 'px';
+        this.toggleBtn.style.top = newY + 'px';
+    },
+
+    stopDrag() {
+        if (!this.isDragging) return;
+
+        this.isDragging = false;
+
+        // 移除拖拽状态样式
+        this.toggleBtn.classList.remove('dragging');
+
+        // 恢复文本选择
+        document.body.style.userSelect = '';
+        document.body.style.webkitUserSelect = '';
+
+        // 保存位置到本地存储
+        this.savePosition();
+
+        // 延迟重置 wasDragged 标志，以便 click 事件可以检查
+        setTimeout(() => {
+            this.wasDragged = false;
+        }, 100);
+    },
+
+    // 检查是否刚刚完成拖拽（用于过滤 click 事件）
+    justDragged() {
+        return this.wasDragged;
+    },
+
+    savePosition() {
+        const position = {
+            x: parseInt(this.toggleBtn.style.left),
+            y: parseInt(this.toggleBtn.style.top),
+            timestamp: Date.now()
+        };
+        utils.storage.set('assistantTogglePosition', position);
+    },
+
+    loadSavedPosition() {
+        const savedPosition = utils.storage.get('assistantTogglePosition', null);
+
+        if (savedPosition && this.toggleBtn) {
+            // 检查保存的位置是否仍然有效（在24小时内）
+            const isRecent = (Date.now() - savedPosition.timestamp) < 24 * 60 * 60 * 1000;
+
+            if (isRecent) {
+                // 确保位置在有效范围内
+                const margin = 10;
+                const btnWidth = this.toggleBtn.offsetWidth || 56;
+                const btnHeight = this.toggleBtn.offsetHeight || 56;
+                const maxX = window.innerWidth - btnWidth - margin;
+                const maxY = window.innerHeight - btnHeight - margin;
+
+                const x = Math.max(margin, Math.min(savedPosition.x, maxX));
+                const y = Math.max(margin, Math.min(savedPosition.y, maxY));
+
+                // 应用保存的位置
+                this.toggleBtn.style.position = 'fixed';
+                this.toggleBtn.style.left = x + 'px';
+                this.toggleBtn.style.top = y + 'px';
+                this.toggleBtn.style.right = 'auto';
+                this.toggleBtn.style.bottom = 'auto';
+            }
+        }
+    },
+
+    adjustPositionOnResize() {
+        if (!this.toggleBtn || !this.toggleBtn.style.left) return;
+
+        // 调整位置确保按钮仍在可视区域内
+        const currentX = parseInt(this.toggleBtn.style.left);
+        const currentY = parseInt(this.toggleBtn.style.top);
+
+        const margin = 10;
+        const btnWidth = this.toggleBtn.offsetWidth || 56;
+        const btnHeight = this.toggleBtn.offsetHeight || 56;
+        const maxX = window.innerWidth - btnWidth - margin;
+        const maxY = window.innerHeight - btnHeight - margin;
+
+        const newX = Math.max(margin, Math.min(currentX, maxX));
+        const newY = Math.max(margin, Math.min(currentY, maxY));
+
+        if (newX !== currentX || newY !== currentY) {
+            this.toggleBtn.style.left = newX + 'px';
+            this.toggleBtn.style.top = newY + 'px';
+            this.savePosition();
+        }
+    }
+};
+
 // ===== 初始化 =====
 document.addEventListener('DOMContentLoaded', () => {
     Navbar.init();
@@ -870,6 +1321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     GuideOverlay.init();
     ScrollReveal.init();
     Assistant.init();
+    AssistantToggleDrag.init();
 
     console.log('%c崖城风骨——崖州古城建筑文化数字图鉴', 'color: #8B4513; font-size: 18px; font-weight: bold;');
     console.log('%c全国大学生计算机设计大赛参赛作品', 'color: #2F5D7A; font-size: 14px;');
