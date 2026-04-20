@@ -56,6 +56,14 @@ const utils = {
             } catch (e) {
                 return false;
             }
+        },
+        remove(key) {
+            try {
+                localStorage.removeItem(key);
+                return true;
+            } catch (e) {
+                return false;
+            }
         }
     }
 };
@@ -1026,7 +1034,7 @@ const Assistant = {
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message ${role}`;
         
-        const avatar = role === 'user' ? '👤' : '<img src="../images/content/Agent.png" alt="智能助手" class="avatar-img">';
+        const avatar = role === 'user' ? '👤' : '<img src="../images/content/agent1.png" alt="智能助手" class="avatar-img">';
         const name = role === 'user' ? '您' : '崖城智查';
         
         // 将换行符转换为HTML
@@ -1129,8 +1137,8 @@ const AssistantToggleDrag = {
         // 添加可拖拽样式类
         this.toggleBtn.classList.add('draggable');
 
-        // 加载保存的位置
-        this.loadSavedPosition();
+        // 清除旧的位置数据（因为HTML结构已改变）
+        utils.storage.remove('assistantTogglePosition');
 
         // 绑定事件
         this.bindEvents();
