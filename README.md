@@ -6,8 +6,9 @@
 
 <p align="center">
   <a href="https://github.com/sujianyuhi/4cyazhou"><img src="https://img.shields.io/github/license/sujianyuhi/4cyazhou" alt="License"></a>
-  <a href="#"><img src="https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen" alt="Node.js"></a>
-  <a href="#"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
+  <a href="#"><img src="https://img.shields.io/badge/node-%3E%3D21.0.0-brightgreen" alt="Node.js"></a>
+  <a href="https://github.com/sujianyuhi/4cyazhou/commits/main"><img src="https://img.shields.io/github/last-commit/sujianyuhi/4cyazhou" alt="Last Commit"></a>
+  <a href="#"><img src="https://img.shields.io/badge/纯原生-零依赖-orange" alt="纯原生"></a>
 </p>
 
 <p align="center">
